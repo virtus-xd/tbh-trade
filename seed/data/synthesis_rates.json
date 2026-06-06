@@ -1,0 +1,32 @@
+[
+  { "inputKey": "common", "resultKey": "uncommon", "probability": 0.95, "isFail": false, "isGreatSuccess": false },
+  { "inputKey": "common", "resultKey": "rare", "probability": 0.048, "isFail": false, "isGreatSuccess": true },
+
+  { "inputKey": "uncommon", "resultKey": "rare", "probability": 0.96, "isFail": false, "isGreatSuccess": false },
+  { "inputKey": "uncommon", "resultKey": "legendary", "probability": 0.038, "isFail": false, "isGreatSuccess": true },
+
+  { "inputKey": "rare", "resultKey": "legendary", "probability": 0.98, "isFail": false, "isGreatSuccess": false },
+  { "inputKey": "rare", "resultKey": "immortal", "probability": 0.024, "isFail": false, "isGreatSuccess": true },
+
+  { "inputKey": "legendary", "resultKey": "immortal", "probability": 0.99, "isFail": false, "isGreatSuccess": false },
+  { "inputKey": "legendary", "resultKey": "arcana", "probability": 0.0099, "isFail": false, "isGreatSuccess": true },
+
+  { "inputKey": "immortal", "resultKey": "immortal", "probability": 0.50, "isFail": true, "isGreatSuccess": false },
+  { "inputKey": "immortal", "resultKey": "arcana", "probability": 0.50, "isFail": false, "isGreatSuccess": false },
+  { "inputKey": "immortal", "resultKey": "beyond", "probability": 0.0025, "isFail": false, "isGreatSuccess": true },
+
+  { "inputKey": "arcana", "resultKey": "arcana", "probability": 0.67, "isFail": true, "isGreatSuccess": false },
+  { "inputKey": "arcana", "resultKey": "beyond", "probability": 0.33, "isFail": false, "isGreatSuccess": false },
+  { "inputKey": "arcana", "resultKey": "celestial", "probability": 0.0017, "isFail": false, "isGreatSuccess": true },
+
+  { "inputKey": "beyond", "resultKey": "beyond", "probability": 0.77, "isFail": true, "isGreatSuccess": false },
+  { "inputKey": "beyond", "resultKey": "celestial", "probability": 0.23, "isFail": false, "isGreatSuccess": false },
+  { "inputKey": "beyond", "resultKey": "divine", "probability": 0.0008, "isFail": false, "isGreatSuccess": true },
+
+  { "inputKey": "celestial", "resultKey": "celestial", "probability": 0.83, "isFail": true, "isGreatSuccess": false },
+  { "inputKey": "celestial", "resultKey": "divine", "probability": 0.17, "isFail": false, "isGreatSuccess": false },
+  { "inputKey": "celestial", "resultKey": "cosmic", "probability": 0.0002, "isFail": false, "isGreatSuccess": true },
+
+  { "inputKey": "divine", "resultKey": "divine", "probability": 0.91, "isFail": true, "isGreatSuccess": false },
+  { "inputKey": "divine", "resultKey": "cosmic", "probability": 0.091, "isFail": false, "isGreatSuccess": false }
+]

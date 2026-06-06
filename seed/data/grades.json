@@ -1,0 +1,12 @@
+[
+  { "id": 1, "key": "common", "name": "Common", "colorHex": "#e4e4e4", "alchemyGold": 10, "socketsD": 0, "socketsE": 0, "socketsI": 0, "tradable": false },
+  { "id": 2, "key": "uncommon", "name": "Uncommon", "colorHex": "#54fc0c", "alchemyGold": 30, "socketsD": 1, "socketsE": 0, "socketsI": 0, "tradable": false },
+  { "id": 3, "key": "rare", "name": "Rare", "colorHex": "#2f8bfc", "alchemyGold": 90, "socketsD": 1, "socketsE": 1, "socketsI": 0, "tradable": false },
+  { "id": 4, "key": "legendary", "name": "Legendary", "colorHex": "#fc9c0c", "alchemyGold": 270, "socketsD": 2, "socketsE": 2, "socketsI": 0, "tradable": true },
+  { "id": 5, "key": "immortal", "name": "Immortal", "colorHex": "#fc2424", "alchemyGold": 810, "socketsD": 2, "socketsE": 2, "socketsI": 1, "tradable": true },
+  { "id": 6, "key": "arcana", "name": "Arcana", "colorHex": "#b40cfc", "alchemyGold": 2592, "socketsD": 3, "socketsE": 2, "socketsI": 1, "tradable": true },
+  { "id": 7, "key": "beyond", "name": "Beyond", "colorHex": "#fc246c", "alchemyGold": 8294, "socketsD": 3, "socketsE": 2, "socketsI": 2, "tradable": true },
+  { "id": 8, "key": "celestial", "name": "Celestial", "colorHex": "#6ccce4", "alchemyGold": 29029, "socketsD": 3, "socketsE": 2, "socketsI": 2, "tradable": true },
+  { "id": 9, "key": "divine", "name": "Divine", "colorHex": "#fce454", "alchemyGold": 101602, "socketsD": 3, "socketsE": 2, "socketsI": 2, "tradable": true },
+  { "id": 10, "key": "cosmic", "name": "Cosmic", "colorHex": "#fcfcfc", "alchemyGold": 355607, "socketsD": 3, "socketsE": 2, "socketsI": 2, "tradable": true }
+]

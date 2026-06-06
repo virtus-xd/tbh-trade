@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pnpm install *)",
+      "Bash(pnpm --filter calc test)",
+      "mcp__plugin_supabase_supabase__list_projects",
+      "mcp__plugin_supabase_supabase__list_organizations",
+      "mcp__plugin_supabase_supabase__confirm_cost",
+      "mcp__plugin_supabase_supabase__create_project",
+      "Bash(pnpm db:migrate)",
+      "Bash(node -e ' *)",
+      "mcp__plugin_supabase_supabase__execute_sql"
+    ]
+  }
+}

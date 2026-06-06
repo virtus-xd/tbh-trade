@@ -1,0 +1,11 @@
+[
+  { "tier": 1, "levelMin": 1, "levelMax": 10, "cubeLevel": 1, "goldCost": 0 },
+  { "tier": 2, "levelMin": 10, "levelMax": 20, "cubeLevel": 10, "goldCost": 100 },
+  { "tier": 3, "levelMin": 15, "levelMax": 30, "cubeLevel": 20, "goldCost": 500 },
+  { "tier": 4, "levelMin": 20, "levelMax": 40, "cubeLevel": 30, "goldCost": 1000 },
+  { "tier": 5, "levelMin": 30, "levelMax": 50, "cubeLevel": 40, "goldCost": 3000 },
+  { "tier": 6, "levelMin": 40, "levelMax": 65, "cubeLevel": 50, "goldCost": 5000 },
+  { "tier": 7, "levelMin": 50, "levelMax": 65, "cubeLevel": 60, "goldCost": 7000 },
+  { "tier": 8, "levelMin": 65, "levelMax": 80, "cubeLevel": 70, "goldCost": 10000 },
+  { "tier": 9, "levelMin": 1, "levelMax": 90, "cubeLevel": 0, "goldCost": 0 }
+]

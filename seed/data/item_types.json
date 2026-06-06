@@ -1,0 +1,22 @@
+[
+  { "key": "sword", "name": "Sword", "category": "weapon" },
+  { "key": "bow", "name": "Bow", "category": "weapon" },
+  { "key": "staff", "name": "Staff", "category": "weapon" },
+  { "key": "scepter", "name": "Scepter", "category": "weapon" },
+  { "key": "crossbow", "name": "Crossbow", "category": "weapon" },
+  { "key": "axe", "name": "Axe", "category": "weapon" },
+  { "key": "shield", "name": "Shield", "category": "offhand" },
+  { "key": "arrow", "name": "Arrow", "category": "offhand" },
+  { "key": "orb", "name": "Orb", "category": "offhand" },
+  { "key": "tome", "name": "Tome", "category": "offhand" },
+  { "key": "bolt", "name": "Bolt", "category": "offhand" },
+  { "key": "hatchet", "name": "Hatchet", "category": "offhand" },
+  { "key": "helmet", "name": "Helmet", "category": "armor" },
+  { "key": "armor", "name": "Armor", "category": "armor" },
+  { "key": "gloves", "name": "Gloves", "category": "armor" },
+  { "key": "boots", "name": "Boots", "category": "armor" },
+  { "key": "amulet", "name": "Amulet", "category": "accessory" },
+  { "key": "earring", "name": "Earring", "category": "accessory" },
+  { "key": "ring", "name": "Ring", "category": "accessory" },
+  { "key": "bracer", "name": "Bracer", "category": "accessory" }
+]

@@ -1,0 +1,38 @@
+# dependencies
+node_modules/
+.pnpm-store/
+
+# build outputs
+dist/
+build/
+.next/
+out/
+*.tsbuildinfo
+
+# next.js
+apps/web/next-env.d.ts
+
+# drizzle generated migrations are committed; ignore only local journal noise if any
+# (keep packages/db/drizzle/ tracked)
+
+# test / coverage
+coverage/
+
+# env & secrets — ASLA repoya girmez (bkz. .env.example)
+.env
+.env.*
+!.env.example
+
+# datamine scratch cache
+.datamine-tmp/
+
+# logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# editor / os
+.DS_Store
+.idea/
+.vscode/*
+!.vscode/extensions.json

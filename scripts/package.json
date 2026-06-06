@@ -1,0 +1,19 @@
+{
+  "name": "scripts",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "datamine:import": "tsx datamine-import.ts",
+    "map:market-names": "tsx map-market-names.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "db": "workspace:*",
+    "price-ingest": "workspace:*",
+    "shared": "workspace:*"
+  },
+  "devDependencies": {
+    "dotenv": "^16.4.7"
+  }
+}

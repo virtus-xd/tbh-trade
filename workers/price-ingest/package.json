@@ -1,0 +1,27 @@
+{
+  "name": "price-ingest",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "main": "./src/ingest.ts",
+  "exports": {
+    ".": "./src/ingest.ts",
+    "./ingest": "./src/ingest.ts",
+    "./scan": "./src/scan.ts",
+    "./runs": "./src/runs.ts"
+  },
+  "scripts": {
+    "ingest:once": "tsx src/index.ts --once",
+    "scan:once": "tsx src/scan-entry.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "calc": "workspace:*",
+    "db": "workspace:*",
+    "drizzle-orm": "^0.38.3",
+    "shared": "workspace:*"
+  },
+  "devDependencies": {
+    "dotenv": "^16.4.7"
+  }
+}

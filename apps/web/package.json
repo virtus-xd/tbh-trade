@@ -1,0 +1,30 @@
+{
+  "name": "web",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "calc": "workspace:*",
+    "db": "workspace:*",
+    "next": "^15.1.6",
+    "next-intl": "^4.13.0",
+    "price-ingest": "workspace:*",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "shared": "workspace:*"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.0.0",
+    "@types/node": "^22.10.7",
+    "@types/react": "^19.0.7",
+    "@types/react-dom": "^19.0.3",
+    "dotenv": "^16.4.7",
+    "tailwindcss": "^4.0.0",
+    "typescript": "^5.7.2"
+  }
+}

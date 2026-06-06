@@ -1,0 +1,28 @@
+{
+  "name": "tbh-trade",
+  "version": "0.0.0",
+  "private": true,
+  "packageManager": "pnpm@9.15.9",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "pnpm --filter web dev",
+    "build": "pnpm --filter web build",
+    "start": "pnpm --filter web start",
+    "db:generate": "pnpm --filter db db:generate",
+    "db:migrate": "pnpm --filter db db:migrate",
+    "db:check": "pnpm --filter db db:check",
+    "seed": "pnpm --filter seed seed",
+    "ingest:once": "pnpm --filter price-ingest ingest:once",
+    "scan:once": "pnpm --filter price-ingest scan:once",
+    "datamine:import": "pnpm --filter scripts datamine:import",
+    "map:market-names": "pnpm --filter scripts map:market-names",
+    "test": "pnpm -r --if-present test",
+    "typecheck": "pnpm -r --if-present typecheck"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}
