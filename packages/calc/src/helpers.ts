@@ -2,14 +2,21 @@
  * Saf yardımcılar — fiyat seçimi, oran normalizasyonu, havuz değerleme.
  * Hepsi yan-etkisiz ve ayrı test edilir (docs/03).
  */
-import { STEAM_FEE } from "shared";
+import { PRICE_FLOOR_CENTS, STEAM_FEE } from "shared";
 import type { Pool, PriceBook, PriceOpts, PriceQuote } from "./types";
 
 /** Varsayılan fiyat ayarları (config override edebilir). */
 export const DEFAULT_PRICE_OPTS: PriceOpts = {
   volumeThreshold: 5,
   fee: STEAM_FEE,
+  priceFloorCents: PRICE_FLOOR_CENTS,
 };
+
+/** Taban altı fiyatları (ghost/scam) ele: altındaysa null. */
+function floor(v: number | null, opts: PriceOpts): number | null {
+  if (v == null) return null;
+  return v < opts.priceFloorCents ? null : v;
+}
 
 /**
  * Datamined oranlar ~%100 değil (örn. immortal 0.50+0.50+0.0025) → 1'e normalize.
@@ -34,17 +41,17 @@ export function normalizeOdds<K extends string>(odds: Record<K, number>): Record
  */
 export function sellPrice(q: PriceQuote | null, opts: PriceOpts): number | null {
   if (!q) return null;
-  if (q.volume != null && q.volume >= opts.volumeThreshold && q.median != null) return q.median;
-  if (q.lowest != null) return q.lowest;
-  if (q.median != null) return q.median; // son çare: hacim yok ama medyan var
+  if (q.volume != null && q.volume >= opts.volumeThreshold && q.median != null) return floor(q.median, opts);
+  if (q.lowest != null) return floor(q.lowest, opts);
+  if (q.median != null) return floor(q.median, opts); // son çare: hacim yok ama medyan var
   return null;
 }
 
-/** Alış maliyeti bazı: her zaman en ucuz liste (lowest). Yoksa null. */
-export function buyPrice(q: PriceQuote | null): number | null {
+/** Alış maliyeti bazı: her zaman en ucuz liste (lowest). Yoksa null. Taban altı (ghost) → null. */
+export function buyPrice(q: PriceQuote | null, opts: PriceOpts = DEFAULT_PRICE_OPTS): number | null {
   if (!q) return null;
-  if (q.lowest != null) return q.lowest;
-  if (q.median != null) return q.median;
+  if (q.lowest != null) return floor(q.lowest, opts);
+  if (q.median != null) return floor(q.median, opts);
   return null;
 }
 

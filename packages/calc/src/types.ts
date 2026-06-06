@@ -65,6 +65,8 @@ export interface PriceOpts {
   volumeThreshold: number;
   /** satış komisyonu (Değişmez kural #4). */
   fee: number;
+  /** bu cents değerinin altındaki fiyatlar ghost/scam → geçersiz (null). */
+  priceFloorCents: number;
 }
 
 // --- scanOpportunities enjekte senaryoları --------------------------------

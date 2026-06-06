@@ -19,17 +19,17 @@ import type { CraftSlot } from "shared";
 
 type Sql = ReturnType<typeof getQueryClient>;
 
-function avgBuyOverPool(pool: Pool, prices: PriceBook): number | null {
-  let sum = 0;
-  let n = 0;
+/** Havuzdaki EN UCUZ geçerli alış fiyatı (cents); yoksa null. (Mantıklı oyuncu
+ *  en ucuz girdiyi alır; buyPrice ghost/scam taban-altı fiyatları ele eler.) */
+function minBuyOverPool(pool: Pool, prices: PriceBook): number | null {
+  let min: number | null = null;
   for (const e of pool) {
     if (!e.tradable) continue;
     const p = buyPrice(prices.get(e.refType, e.id));
     if (p == null) continue;
-    sum += p;
-    n += 1;
+    if (min == null || p < min) min = p;
   }
-  return n > 0 ? Math.round(sum / n) : null;
+  return min;
 }
 
 export async function buildScanRepo(): Promise<{ repo: ScanRepo; prices: PriceBook }> {
@@ -109,7 +109,7 @@ export async function buildScanRepo(): Promise<{ repo: ScanRepo; prices: PriceBo
       const rates = ratesByInput.get(inputGradeKey);
       if (!rates || rates.length === 0) continue; // bu kademeden sentez yok
       const inputGradeTradable = inputPool.some((e) => e.tradable);
-      const inputUnitCents = inputGradeTradable ? avgBuyOverPool(inputPool, prices) : null;
+      const inputUnitCents = inputGradeTradable ? minBuyOverPool(inputPool, prices) : null;
       synthScenarios.push({
         category,
         inputGradeKey,

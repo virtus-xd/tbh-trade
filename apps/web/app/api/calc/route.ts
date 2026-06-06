@@ -22,7 +22,17 @@ function parse(body: unknown): CalcRequest | { error: string } {
     const inputGradeKey = String(b.inputGradeKey);
     if (!SYNTH_CATEGORIES.includes(category as never)) return { error: "geçersiz kategori" };
     if (!GRADE_KEYS.includes(inputGradeKey as never)) return { error: "geçersiz kademe" };
-    return { kind: "synthesis", category: category as never, inputGradeKey: inputGradeKey as never, tier };
+    // Opsiyonel manuel girdi-başı fiyat (cents). Geçersizse yok say (otomatik kullanılır).
+    const raw = b.inputUnitCents;
+    const inputUnitCents =
+      raw != null && Number.isFinite(Number(raw)) && Number(raw) >= 0 ? Math.round(Number(raw)) : null;
+    return {
+      kind: "synthesis",
+      category: category as never,
+      inputGradeKey: inputGradeKey as never,
+      tier,
+      inputUnitCents,
+    };
   }
   if (b.kind === "craft") {
     const slot = String(b.slot);
@@ -47,7 +57,12 @@ export async function POST(req: Request): Promise<NextResponse> {
 
   try {
     if (parsed.kind === "synthesis") {
-      const data = await evaluateSynthesisScenario(parsed);
+      const data = await evaluateSynthesisScenario({
+        category: parsed.category,
+        inputGradeKey: parsed.inputGradeKey,
+        tier: parsed.tier,
+        inputUnitCentsOverride: parsed.inputUnitCents ?? null,
+      });
       return NextResponse.json({ ok: true, data });
     }
     const data = await evaluateCraftScenario(parsed);

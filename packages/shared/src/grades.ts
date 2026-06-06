@@ -29,6 +29,13 @@ export const TRADABLE_MIN_GRADE: GradeKey = "legendary";
 /** Steam satış komisyonu — Değişmez kural #4 (config). */
 export const STEAM_FEE = 0.15;
 
+/**
+ * Geçerli kabul edilen en düşük fiyat (cents). Steam'de gerçek minimum listeleme
+ * 3 cent; altındaki 0–1 cent "listeler" satılmayan ghost/scam kayıtlardır ve
+ * fiyat seçiminde yok sayılır (özellikle "en ucuz girdi" modelini bozmasınlar).
+ */
+export const PRICE_FLOOR_CENTS = 3;
+
 export const GRADES: readonly GradeMeta[] = [
   { tierIndex: 1, key: "common", name: "Common", colorHex: "#e4e4e4", alchemyGold: 10, sockets: { d: 0, e: 0, i: 0 }, tradable: false },
   { tierIndex: 2, key: "uncommon", name: "Uncommon", colorHex: "#54fc0c", alchemyGold: 30, sockets: { d: 1, e: 0, i: 0 }, tradable: false },

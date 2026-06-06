@@ -12,6 +12,8 @@ export interface SynthesisRequest {
   category: SynthCategory;
   inputGradeKey: GradeKey;
   tier: number;
+  /** Manuel girdi-başı fiyat (cents). Verilirse otomatik en-ucuz yerine kullanılır. */
+  inputUnitCents?: number | null;
 }
 export interface CraftRequest {
   kind: "craft";
@@ -36,7 +38,9 @@ export interface SynthesisResult {
     category: SynthCategory;
     inputGradeKey: GradeKey;
     tier: number;
-    inputUnitCents: number | null;
+    inputUnitCents: number | null; // kullanılan (manuel ya da otomatik) girdi-başı fiyat
+    inputAutoCents: number | null; // otomatik en-ucuz piyasa fiyatı (override için referans)
+    inputManual: boolean; // kullanıcı manuel fiyat mı girdi?
     inputGradeTradable: boolean;
     inputPriceMissing: boolean; // tradable ama fiyatsız (farm değil, eksik veri)
     inputPoolSize: number;

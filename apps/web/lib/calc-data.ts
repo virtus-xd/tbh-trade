@@ -87,18 +87,20 @@ function groupPools(rows: DropRow[]): Map<GradeKey, Pool> {
   return pools;
 }
 
-/** Havuzdaki tradable+fiyatlı üyelerin ortalama alış (lowest) fiyatı; yoksa null. */
-function avgBuyOverPool(pool: Pool, prices: PriceBook): number | null {
-  let sum = 0;
-  let n = 0;
+/**
+ * Havuzdaki EN UCUZ geçerli alış fiyatı (cents); yoksa null. Mantıklı oyuncu
+ * o grade+tier'daki en ucuz eşyadan 9 tane alır. buyPrice taban-altı (ghost/scam)
+ * fiyatları zaten ele eler → min onları seçmez.
+ */
+function minBuyOverPool(pool: Pool, prices: PriceBook): number | null {
+  let min: number | null = null;
   for (const e of pool) {
     if (!e.tradable) continue;
     const p = buyPrice(prices.get(e.refType, e.id));
     if (p == null) continue;
-    sum += p;
-    n += 1;
+    if (min == null || p < min) min = p;
   }
-  return n > 0 ? Math.round(sum / n) : null;
+  return min;
 }
 
 // --- Sentez ----------------------------------------------------------------
@@ -106,6 +108,8 @@ export async function evaluateSynthesisScenario(args: {
   category: SynthCategory;
   inputGradeKey: GradeKey;
   tier: number;
+  /** Kullanıcının girdiği girdi-başı fiyat (cents) — verilirse otomatik en-ucuz yerine kullanılır. */
+  inputUnitCentsOverride?: number | null;
 }): Promise<SynthesisResult> {
   const { category, inputGradeKey, tier } = args;
   const { prices, lastUpdatedIso } = await loadPriceBook();
@@ -138,8 +142,14 @@ export async function evaluateSynthesisScenario(args: {
 
   const inputPool = dropsByGrade.get(inputGradeKey) ?? [];
   const inputGradeTradable = inputPool.some((e) => e.tradable);
-  const inputUnitCents = inputGradeTradable ? avgBuyOverPool(inputPool, prices) : null;
-  const inputPriceMissing = inputGradeTradable && inputUnitCents == null;
+  // Otomatik baz: o grade+tier'daki EN UCUZ geçerli fiyat.
+  const inputAutoCents = inputGradeTradable ? minBuyOverPool(inputPool, prices) : null;
+
+  // Manuel override geçerliyse onu kullan; yoksa otomatik en-ucuz.
+  const override = args.inputUnitCentsOverride;
+  const manual = override != null && Number.isFinite(override) && override >= 0;
+  const inputUnitCents = manual ? Math.round(override as number) : inputAutoCents;
+  const inputPriceMissing = !manual && inputGradeTradable && inputAutoCents == null;
 
   const result = evaluateSynthesis({
     inputGradeKey,
@@ -159,6 +169,8 @@ export async function evaluateSynthesisScenario(args: {
       inputGradeKey,
       tier,
       inputUnitCents,
+      inputAutoCents,
+      inputManual: manual,
       inputGradeTradable,
       inputPriceMissing,
       inputPoolSize: inputPool.length,

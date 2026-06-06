@@ -55,6 +55,19 @@ describe("buyPrice", () => {
   });
 });
 
+describe("fiyat tabanı (ghost/scam filtresi)", () => {
+  const opts = DEFAULT_PRICE_OPTS; // priceFloorCents = 3
+  it("taban altı (0,1,2¢) → null", () => {
+    expect(buyPrice({ lowest: 1, median: null, volume: 0 })).toBeNull();
+    expect(buyPrice({ lowest: 0, median: null, volume: 0 })).toBeNull();
+    expect(sellPrice({ lowest: 2, median: null, volume: 0 }, opts)).toBeNull();
+  });
+  it("taban (3¢) ve üzeri korunur", () => {
+    expect(buyPrice({ lowest: 3, median: null, volume: 0 })).toBe(3);
+    expect(buyPrice({ lowest: 4, median: null, volume: 0 })).toBe(4);
+  });
+});
+
 describe("poolAverageSell", () => {
   it("tradable olmayan üye 0 değerle paydaya girer", () => {
     const pool: Pool = [
