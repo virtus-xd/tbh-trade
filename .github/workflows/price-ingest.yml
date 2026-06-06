@@ -4,7 +4,7 @@ name: price-ingest
 # bu worker server-side gider). Tam kapsam — serverless süre limiti yok.
 on:
   schedule:
-    - cron: "0 */6 * * *" # her 6 saatte bir (UTC)
+    - cron: "0 */2 * * *" # her 2 saatte bir (UTC)
   workflow_dispatch: {} # Actions sekmesinden elle tetikleme
 
 # Üst üste binen çalışmaları engelle (Steam rate-limit + DB tutarlılığı).

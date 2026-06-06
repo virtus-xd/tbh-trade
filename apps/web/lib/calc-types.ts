@@ -2,9 +2,9 @@
  * /api/calc istek/yanıt tipleri — saf, DB/sunucu importu YOK.
  * Hem client component'ler hem sunucu (route + RSC) bunu paylaşır.
  */
-import type { CraftSlot, EvalResult, GradeKey, SynthCategory } from "calc";
+import type { CraftSlot, EvalResult, GradeKey, RefType, SynthCategory } from "calc";
 
-export type { CraftSlot, EvalResult, GradeKey, SynthCategory };
+export type { CraftSlot, EvalResult, GradeKey, RefType, SynthCategory };
 
 // --- İstek gövdeleri -------------------------------------------------------
 export interface SynthesisRequest {

@@ -7,6 +7,7 @@ import { loadItemDetail } from "@/lib/calc-data";
 import { Link } from "@/i18n/navigation";
 import { fmtUsd } from "@/lib/format";
 import { TrendChart } from "@/components/trend-chart";
+import { RefreshButton } from "@/components/refresh-button";
 
 export const revalidate = 3600; // ISR: saatte bir tazele
 
@@ -79,7 +80,10 @@ export default async function ItemPage(props: { params: Promise<{ locale: string
       </header>
 
       <section className="mb-8">
-        <h2 className="mb-2 text-lg font-semibold">{t("priceTitle")}</h2>
+        <div className="mb-2 flex items-center justify-between gap-3">
+          <h2 className="text-lg font-semibold">{t("priceTitle")}</h2>
+          {item.tradable ? <RefreshButton refType="item" id={item.id} /> : null}
+        </div>
         {!item.tradable ? (
           <p className="text-neutral-400">{t("notTradable")}</p>
         ) : item.price ? (
